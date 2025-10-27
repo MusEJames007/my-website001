@@ -4,19 +4,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Project Three · 3D Physics Lab</title>
+
+  <!-- 样式文件 -->
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="lab.css" />
 </head>
+
 <body>
+  <!-- 页眉 -->
   <header>
     <h1>3D Physics Lab (Tiffany Blue)</h1>
     <nav><a href="index.html">← Back to Home</a></nav>
   </header>
 
+  <!-- 主体部分 -->
   <main>
     <section>
       <h2>Controls</h2>
 
+      <!-- 第一排控制区 -->
       <div class="toolbar">
         <button id="addSphere" class="btn">Add Sphere</button>
         <button id="addBox" class="btn">Add Box</button>
@@ -43,6 +49,7 @@
         </label>
       </div>
 
+      <!-- 第二排控制区 -->
       <div class="toolbar">
         <strong>Initial Velocity</strong>
         <label class="ctl">vx <input id="vx" type="number" value="2" step="0.5"></label>
@@ -57,24 +64,29 @@
       <p class="muted">Mouse: drag to orbit, wheel to zoom, right-drag to pan.</p>
     </section>
 
+    <!-- Three.js 场景容器 -->
     <section class="lab-wrap">
       <div id="scene"></div>
     </section>
   </main>
 
-  <footer><p>© 2025 MusEJames007 — Project Three</p></footer>
+  <!-- 页脚 -->
+  <footer>
+    <p>© 2025 MusEJames007 — Project Three</p>
+  </footer>
 
-<script type="importmap">
-{
-  "imports": {
-    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
-    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/",
-    "cannon-es": "https://cdn.jsdelivr.net/npm/cannon-es@0.20.0/dist/cannon-es.js"
+  <!-- Import Map：告诉浏览器 three.js 和 cannon-es 在哪 -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/",
+      "cannon-es": "https://cdn.jsdelivr.net/npm/cannon-es@0.20.0/dist/cannon-es.js"
+    }
   }
-}
-</script>
+  </script>
 
-<script type="module" src="lab.js"></script>
-
+  <!-- 模块化脚本 -->
+  <script type="module" src="lab.js"></script>
 </body>
 </html>
