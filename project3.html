@@ -16,31 +16,54 @@
   <main>
     <section>
       <h2>Controls</h2>
+
       <div class="toolbar">
         <button id="addSphere" class="btn">Add Sphere</button>
         <button id="addBox" class="btn">Add Box</button>
         <button id="reset" class="btn">Reset</button>
+
         <label class="ctl">
           Gravity:
           <input id="gravity" type="range" min="-20" max="0" value="-9.8" step="0.1">
           <span id="gVal">-9.8</span> m/s²
         </label>
+
+        <label class="ctl">
+          Material:
+          <select id="material">
+            <option value="glass">Glass (bouncy, low friction)</option>
+            <option value="rubber" selected>Rubber (very bouncy)</option>
+            <option value="metal">Metal (heavy, medium bounce)</option>
+            <option value="wood">Wood (less bounce, more friction)</option>
+          </select>
+        </label>
+
         <label class="ctl">
           <input id="wire" type="checkbox"> Wireframe
         </label>
       </div>
+
+      <div class="toolbar">
+        <strong>Initial Velocity</strong>
+        <label class="ctl">vx <input id="vx" type="number" value="2" step="0.5"></label>
+        <label class="ctl">vy <input id="vy" type="number" value="6" step="0.5"></label>
+        <label class="ctl">vz <input id="vz" type="number" value="0" step="0.5"></label>
+        <button id="shootSphere" class="btn">Shoot Sphere →</button>
+        <label class="ctl"><input id="showVec" type="checkbox" checked> Show Vector</label>
+        <button id="save" class="btn">Save Scene</button>
+        <button id="load" class="btn">Load Scene</button>
+      </div>
+
       <p class="muted">Mouse: drag to orbit, wheel to zoom, right-drag to pan.</p>
     </section>
 
     <section class="lab-wrap">
-      <!-- Canvas由Three.js创建并插入 -->
       <div id="scene"></div>
     </section>
   </main>
 
   <footer><p>© 2025 MusEJames007 — Project Three</p></footer>
 
-  <!-- 使用 ES Modules CDN（可在 GitHub Pages 直接加载） -->
   <script type="module" src="lab.js"></script>
 </body>
 </html>
