@@ -129,3 +129,75 @@
     if (running) update(dt);
     draw();
     requestAnimationFrame(loop);
+  }
+
+  function endGame() {
+    running = false;
+    gameOver = true;
+    const final = Math.floor(score);
+    if (final > best) {
+      best = final;
+      localStorage.setItem('tiffany_best', String(best));
+    }
+    bestEl.textContent = String(best);
+  }
+
+  function drawBackdrop() {
+    // soft Tiffany grid
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0,0,w,h);
+    ctx.strokeStyle = 'rgba(129,216,208,.25)';
+    ctx.lineWidth = 1;
+
+    const step = 30;
+    for (let x = 0; x < w; x += step) {
+      ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke();
+    }
+    for (let y = 0; y < h; y += step) {
+      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
+    }
+  }
+
+  function drawOverlay(title, subtitle) {
+    ctx.fillStyle = 'rgba(255,255,255,0.85)';
+    ctx.fillRect(0, 0, w, h);
+
+    ctx.fillStyle = '#1f2937';
+    ctx.font = 'bold 36px system-ui, -apple-system, Segoe UI, Roboto, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(title, w/2, h/2 - 10);
+
+    ctx.fillStyle = '#6b7280';
+    ctx.font = '16px system-ui, -apple-system, Segoe UI, Roboto, sans-serif';
+    ctx.fillText(subtitle, w/2, h/2 + 22);
+  }
+
+  function drawSplash(text) {
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0,0,w,h);
+    ctx.fillStyle = '#5fbcb4';
+    ctx.font = 'bold 28px system-ui, -apple-system, Segoe UI, Roboto, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(text, w/2, h/2);
+  }
+
+  function rectIntersect(x1,y1,w1,h1,x2,y2,w2,h2){
+    return !(x1+w1<x2 || x2+w2<x1 || y1+h1<y2 || y2+h2<y1);
+  }
+  function rand(min,max){ return Math.floor(Math.random()*(max-min+1))+min; }
+  function roundRect(c,x,y,w,h,r,fill){
+    c.beginPath();
+    c.moveTo(x+r,y);
+    c.arcTo(x+w,y,x+w,y+h,r);
+    c.arcTo(x+w,y+h,x,y+h,r);
+    c.arcTo(x,y+h,x,y,r);
+    c.arcTo(x,y,x+w,y,r);
+    c.closePath();
+    if (fill) c.fill();
+  }
+
+  // init
+  bestEl.textContent = String(best);
+  resetGame();
+  requestAnimationFrame((t)=>{ lastTime=t; loop(t); });
+})();
